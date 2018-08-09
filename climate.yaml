@@ -1,0 +1,12 @@
+- platform: gree
+  name: Livingroom AC
+  host: 192.168.1.49
+  mac: 'F4:91:1E:31:9F:58' # (AC_MAC)
+  unique_key: '<UNIQUE_KEY>'
+  timeout: 10
+  min_temp: 16
+  max_temp: 30
+  target_temp: 20
+  temp_sensor: sensor.livingroom_temperature
+  default_operation: 'off'
+  default_operation_from_idle: 'cool'
