@@ -11,7 +11,7 @@ SUPPORT_OPERATION_MODE, SUPPORT_TARGET_TEMPERATURE, SUPPORT_FAN_MODE, SUPPORT_SW
 from homeassistant.const import (ATTR_UNIT_OF_MEASUREMENT, ATTR_TEMPERATURE, CONF_NAME, CONF_HOST, CONF_MAC, CONF_TIMEOUT, CONF_CUSTOMIZE)
 from homeassistant.helpers.event import (async_track_state_change)
 from homeassistant.core import callback
-from homeassistant.helpers.restore_state import async_get_last_state
+from homeassistant.helpers.restore_state import RestoreEntity
 from configparser import ConfigParser
 from base64 import b64encode, b64decode
 
@@ -339,7 +339,7 @@ class GreeClimate(ClimateDevice):
         
     @asyncio.coroutine
     def async_added_to_hass(self):
-        state = yield from async_get_last_state(self.hass, self.entity_id)
+        state = yield from RestoreEntity(self.hass, self.entity_id)
         
         if state is not None:
             self._target_temperature = state.attributes['temperature']
